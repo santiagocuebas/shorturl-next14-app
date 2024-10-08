@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	font-size: 14px;
+	font-weight: 400;
+	font-family: 'Inter Variable', monospace;
+	color: inherit;
+}
+
+a { text-decoration: none; }
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+input, textarea {
+	border: none;
+	outline: none;
+	resize: none;
+}
+
+li { list-style: none; }
+
+svg { stroke-width: 5; }
+
+@font-face {
+	font-family: 'Geist Mono';
+	src: url('../fonts/GeistMonoVF.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 100 200 300 400 500 600 700 800 900;
+}
+
+@font-face {
+	font-family: 'Inter Variable';
+	src: url('../fonts/InterVariable.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 100 200 300 400 500 600 700 800 900;
+}

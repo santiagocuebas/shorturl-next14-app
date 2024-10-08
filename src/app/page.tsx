@@ -1,95 +1,70 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import Link from 'next/link';
+import styled from 'styled-components';
+import { FaLink, FaGithub } from 'react-icons/fa6';
+import { useAppSelector } from '@/lib/store';
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+function Home() {
+	const user = useAppSelector(state => state.user.value);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+	return (
+		<Page>
+			<h1>
+				Enhance Your Link Management
+			</h1>
+			<p>
+				NJShort is an open-source platform that allows you to create, manage, and share short links with ease. It's fast, secure, and easy to use.
+			</p>
+			<Link href={user ? '/dashboard' : '/auth'} className='register'>
+				<FaLink fill='#ffffff' fontSize={16} />
+				Create a Link
+			</Link>
+			<a href="https://github.com" target='_blank'>
+				<FaGithub fontSize={16} />
+				Github Repo
+			</a>
+		</Page>
+	);
 }
+
+const Page = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	max-width: 800px;
+	margin-top: 120px;
+	text-align: center;
+	gap: 24px;
+
+	h1 {
+		font-size: 48px;
+		font-weight: 700;
+		letter-spacing: -1.2px;
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		padding: 16px 24px;
+		border-radius: 8px;
+		box-shadow: 0 0 2px ${props => props.theme.isDark ? '#a0a0a0' : '#b0b0b0'};
+		font-weight: 500;
+		gap: 12px;
+
+		&.register {
+			background-color: ${props => props.theme.isDark ? '#ffffff' : '#000000'};
+			color: ${props => props.theme.isDark ? '#000000' : '#ffffff'};
+
+			svg { fill: ${props => props.theme.isDark ? '#000000' : '#ffffff'}; }
+		}
+	}
+`;
+
+export default Home;
