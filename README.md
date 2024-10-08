@@ -28,8 +28,8 @@ pnpm run todo
 ## Recursos
 - Node.js
 - Express
-- MongoDB
+- PostgreSQL
 - TypeScript
 - Next.js
 - React.js
-- Tailwind.css
+- Styled-Components
